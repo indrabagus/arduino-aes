@@ -1,6 +1,6 @@
 # AES cryptography for Arduino Board
 =====================================
-This project will tested in Genuino 101 board
+This project will be tested in Genuino 101 board
 
 Installation
 ------------
@@ -23,14 +23,14 @@ The library supports 3 kinds of operations.
 
 The single block enc/decryption are the following methods:
 
-```c
+```c++
 void AES::Encrypt;
 void AES::Decrypt;
 ```
 
 Usage example:
 	
-```c
+```c++
 Serial.begin(57600);
 uint8_t key[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 char data[] = "0123456789012345"; //16 chars == 16 bytes
