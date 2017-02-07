@@ -1,5 +1,5 @@
-# AES cryptography for Arduino Board
-=====================================
+# AES Cryptography for Arduino/Genuino 101 Board
+=================================================
 This project will be tested in Genuino 101 board
 
 Installation
