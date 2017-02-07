@@ -6,8 +6,8 @@ Installation
 ------------
 
 - Download the files in this repository (using either clone or the download button)
-- Copy the `AESLib` folder into `libraries` folder (same level as your `sketch` folder)
-- add `#include <AESLib.h>` in your sketch.
+- Copy the `Crypto.h` and `Crypto.cpp` into your `sketch` folder
+- add `#include "Crypto.h"` in your sketch.
 
 
 Usage
