@@ -5,6 +5,8 @@
 #define AESTRUE     1
 #define AESFALSE    0
 
+// Global variable
+CryptoAES AES;
 
 static const byte s_box[256] = {
     0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76, 
@@ -353,36 +355,39 @@ final_round(byte* inout, const byte* expandedkey){
 
 
 
-AES::AES()
+CryptoAES::CryptoAES()
 {
     
 }
 
-void AES::Init()
-{}
 
 
-void AES::SetIV(byte* piv)
+void CryptoAES::Initialize(byte* const piv, byte* const pkey){
+    m_piv = piv;
+    m_pkey = pkey;
+}
+
+void CryptoAES::SetIV(byte* piv)
 {
     m_piv = piv;
 }
 
-void AES::SetKey(byte* pkey)
+void CryptoAES::SetKey(byte* pkey)
 {
     m_pkey = pkey;
 }
 
-void AES::Encrypt(byte* pplaintext,int len,byte* poutput,int mode)
+void CryptoAES::Encrypt(byte* pplaintext,int len,byte* poutput,int mode)
 {
     return this->process(pplaintext,len,poutput,mode,true);   
 }
 
-void AES::Decrypt(byte* pciphertext, int len,byte* poutput,int mode)
+void CryptoAES::Decrypt(byte* pciphertext, int len,byte* poutput,int mode)
 {
     return this->process(pciphertext,len,poutput,mode,false);
 }
 
-void AES::process(byte* pdatain,int len,byte* poutput,int mode,bool isencrypt)
+void CryptoAES::process(byte* pdatain,int len,byte* poutput,int mode,bool isencrypt)
 {
     int loop;
     byte* piterinput;
@@ -440,7 +445,7 @@ void AES::process(byte* pdatain,int len,byte* poutput,int mode,bool isencrypt)
     }
 }
 
-void AES::encryption(const byte* plaintext, const byte* key, byte* ciphered)
+void CryptoAES::encryption(const byte* plaintext, const byte* key, byte* ciphered)
 {
     int idx;
     static byte expandedkey[11][16];
@@ -455,7 +460,7 @@ void AES::encryption(const byte* plaintext, const byte* key, byte* ciphered)
 }
 
 
-void AES::decryption(const byte* ciphered, const byte* key,byte* plaintext)
+void CryptoAES::decryption(const byte* ciphered, const byte* key,byte* plaintext)
 {
     int idx;
     static byte expandedkeydecr[11][16];
@@ -468,3 +473,5 @@ void AES::decryption(const byte* ciphered, const byte* key,byte* plaintext)
     inverse_finalround(plaintext, expandedkeydecr[0]);
     
 }
+
+

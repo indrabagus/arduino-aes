@@ -10,11 +10,11 @@
  * The padding use Zero padding
  * Output buffer harus kelipatan 16 byte 
 */
-class AES
+class CryptoAES
 {
     public:
-        AES();
-        void Init();
+        CryptoAES();
+        void Initialize(byte* const piv, byte* const pkey);
         void SetIV(byte* piv); // Assume 16 byte
         void SetKey(byte* pkey); // Assume 16 byte
         void Encrypt(byte* pplaintext,int len,byte* poutput,int mode);
@@ -28,4 +28,5 @@ class AES
         void decryption(const byte* ciphered, const byte* key,byte* plaintext);        
 };
 
+extern CryptoAES AES;
 #endif
